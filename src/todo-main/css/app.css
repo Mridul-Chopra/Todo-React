@@ -1,0 +1,161 @@
+body{
+    margin:0;
+    padding:0;
+    background-color:#E1E6DE;
+}
+
+.header{
+    width:100vw;
+    border:1px solid black;
+    height:10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 3rem;
+    border:none;
+    border-bottom:3px solid black;
+    padding:2vh 0 2vh 0;
+}
+
+.todo-list{
+    display:flex;
+    flex-direction: column;
+    width: 100%;
+    color:#142242;
+    font-weight: bold;
+    font-family: 'Dancing Script', cursive;
+}
+
+.li-wrapper{
+    border-bottom:1px solid black;
+    margin:1em 0 0 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding:0 0 0.5em 0;
+}
+.wrapper-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.input-box{
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    margin: 1em 0 2em 0;
+}
+
+#todo-item{
+    width:80%;
+    height:5vh;
+    outline: none;
+    text-align: center;
+    border: none;
+    border-bottom: 1px solid black;
+    background: transparent;
+}
+
+button{
+    background:transparent;
+    border:none;
+    text-transform: capitalize;
+    color:#F6FAF4;
+}
+button:hover{
+    text-decoration: line-through;
+    color:red;
+}
+
+#add-button{
+    border-radius:200px;
+    outline: none;
+    margin:0 0 0  1em;
+    padding:1em;
+    color:green;
+    text-decoration: none;
+}
+
+#add-button:hover{
+    border:1px solid green;
+}
+
+@media only screen and (min-width: 960px) {
+    /* styles for browsers larger than 960px; */
+    .wrapper-container{
+        width:33.33vw;
+        margin: 10vh 0 0 33.33vw;
+        font-size:1.7rem;
+    }
+
+    #todo-item{
+        font-size:1.5rem ;
+    }
+
+    button{
+        font-size:1.3rem ;
+        outline:none;
+    }
+    
+}
+@media only screen and (min-width: 1440px) {
+    /* styles for browsers larger than 1440px; */
+}
+@media only screen and (min-width: 2000px) {
+    /* for sumo sized (mac) screens */
+}
+@media only screen and (max-device-width: 480px) {
+   /* styles for mobile browsers smaller than 480px; (iPhone) */
+   .wrapper-container{
+    width:80vw;
+    margin: 10vh 0 0 10vw;
+    font-size:1.5rem;
+    }
+    #todo-item{
+        font-size:1.3rem ;
+    }
+    button{
+        font-size:1.1rem ;
+    }
+}
+@media only screen and (device-width: 768px) {
+   /* default iPad screens */
+   .wrapper-container{
+    width:80vw;
+    margin: 10vh 0 0 10vw;
+    font-size:3rem;
+    }
+    #todo-item{
+        font-size:2.2rem ;
+    }
+    button{
+        font-size:2.0rem ;
+    }
+}
+@media only screen and (device-width: 1024px) {
+    /* default iPad pro screens */
+    .wrapper-container{
+     width:80vw;
+     margin: 10vh 0 0 10vw;
+     font-size:3.4rem;
+     }
+     #todo-item{
+         font-size:2.6rem ;
+     }
+     button{
+         font-size:2.4rem ;
+     }
+     .header{
+         font-size: 4rem;
+     }
+ }
+/* different techniques for iPad screening */
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+  /* For portrait layouts only */
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+  /* For landscape layouts only */
+}
