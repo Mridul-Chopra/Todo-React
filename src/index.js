@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import * as serviceWorker from './serviceWorker';
 import App from './todo-main/App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <div className='header'>My TODO list</div>
     <App/>
   </React.StrictMode>,
   document.getElementById('root')

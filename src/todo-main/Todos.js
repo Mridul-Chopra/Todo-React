@@ -1,5 +1,7 @@
+/* importing all the required deoendencies */
 import React from 'react';
-import './css/app.css'
+import './css/app.css';
+import $ from "jquery";
 
 /*
 A component class to add todo list items
@@ -39,7 +41,6 @@ class TodoList extends React.Component{
                             <Todo key={index} todo={element} clickAction={(e)=>this.removeTodo(e)}/>
                         ))
                     }
-                    
                     </div>
         
         return list; // render an unordered list
@@ -49,7 +50,7 @@ class TodoList extends React.Component{
     componentDidMount(){
         // imitates ajax call
         let list = ['Get ready for work', 'Eat food' ,'Go to Office' ,'Code React App']; // a list of todos 
-        
+         this.getTodos();
         // updating the state of the component to update the ui
         this.setState({
             todos:list,
@@ -67,6 +68,17 @@ class TodoList extends React.Component{
         this.setState({
             todos:todoList
         });
+       
+        let payload = {todo:todo};
+        $.ajax({
+            url:'http://localhost:5000/addTodo',
+            method:'POST',
+            data:payload,
+            xhrFields:{withCredentials:true},
+            success:(result)=>{
+                console.log(result);
+            }
+       });
     }
 
     removeTodo(e){
@@ -82,7 +94,28 @@ class TodoList extends React.Component{
        this.setState({
             todos:list
        });
+
+       let payload = {todo:todo};
+       $.ajax({
+            url:'http://localhost:5000/doneTodo',
+            method:'POST',
+            data:payload,
+            xhrFields:{withCredentials:true},
+            success:(result)=>{
+                console.log(result);
+            }
+       });
     }
+
+    async getTodos(){
+        
+        $.ajax({
+            url:'http://localhost:5000/getTodos',
+            method:'POST',
+            xhrFields: {withCredentials: true}
+        }).done((data)=>{console.log(data)}) 
+    }
+   
 }
 
 

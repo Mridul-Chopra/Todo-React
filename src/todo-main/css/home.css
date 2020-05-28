@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap');
+body{
+    margin:0;
+    padding: 0;
+}
+
+.img-background{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100vw;
+    height:100vh;
+   /* background-image: url("/img/trees.jpg"); */
+}
+
+.head{
+    position: relative;
+    font-size:3rem;
+    top:-7vh;
+    left:-1vw;
+    width: 100%;
+    text-align: center;
+    font-family: 'Caveat', cursive;
+    background: none;
+}
+
+@media only screen and (min-width: 960px) {
+    /* styles for browsers larger than 960px; */
+}
+@media only screen and (min-width: 1440px) {
+    /* styles for browsers larger than 1440px; */
+}
+@media only screen and (min-width: 2000px) {
+    /* for sumo sized (mac) screens */
+}
+@media only screen and (max-device-width: 480px) {
+   /* styles for mobile browsers smaller than 480px; (iPhone) */
+   .head{
+       top:-6vh;
+   }
+}
+@media only screen and (device-width: 768px) {
+   /* default iPad screens */
+   .head{
+       font-size: 5rem;
+       top:-5vh;
+   }
+}
+/* different techniques for iPad screening */
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) {
+  /* For portrait layouts only */
+}
+
+@media only screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) {
+  /* For landscape layouts only */
+}
