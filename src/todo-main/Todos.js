@@ -2,6 +2,7 @@
 import React from 'react';
 import './css/app.css';
 import $ from "jquery";
+import  { Redirect } from 'react-router-dom';
 
 /*
 A component class to add todo list items
@@ -29,12 +30,15 @@ class Todo extends React.Component{
 class TodoList extends React.Component{
     constructor(props){
         super(props);
-        this.state = {todos:[]}; // todos array contains all the todos items
+        this.state = {todos:[] , login:true}; // todos array contains all the todos items
         this.removeTodo = this.removeTodo.bind(this);
     }
 
     render(){
         
+        if(!this.state.login){
+            return <Redirect to='/'/>
+        }
         let list =  <div className='todo-list'> 
                     {
                         this.state.todos.map((element,index)=>(
@@ -47,14 +51,24 @@ class TodoList extends React.Component{
     }
 
     // when component finally mounted populate todos in the state of the component
-    componentDidMount(){
-        // imitates ajax call
-        let list = ['Get ready for work', 'Eat food' ,'Go to Office' ,'Code React App']; // a list of todos 
-         this.getTodos();
-        // updating the state of the component to update the ui
-        this.setState({
-            todos:list,
-        });
+    async componentDidMount(){
+       
+        let list =[]; // will contain all the todos 
+        let res = await this.getTodos(); // get all the todos from the server
+     
+        if(res){ // if there are todos present  
+            res = JSON.parse(res); // convert todos in json format 
+            res.forEach(element => 
+               list.push(element.todo) // push the todos in the list
+            );
+        
+            this.setState({ // update the state of the component to reflect changes
+                todos:list,
+                login:true
+            });
+       }
+        
+        
     }
 
     // function to add a new todo item
@@ -107,13 +121,22 @@ class TodoList extends React.Component{
        });
     }
 
-    async getTodos(){
+    getTodos(){
+        return new Promise((resolve,reject)=>{
+            $.ajax({
+                url:'http://localhost:5000/getTodos',
+                method:'POST',
+                xhrFields: {withCredentials: true}
+            }).done((data)=>{
+                console.log(data);
+                resolve(data);
+            }).fail((err,status)=>{
+                if(err.status==403){
+                    resolve(false);
+                }
+            }); 
+        });
         
-        $.ajax({
-            url:'http://localhost:5000/getTodos',
-            method:'POST',
-            xhrFields: {withCredentials: true}
-        }).done((data)=>{console.log(data)}) 
     }
    
 }

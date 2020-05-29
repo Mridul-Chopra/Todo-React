@@ -25,7 +25,7 @@ class LoginBox extends React.Component{
         return(
             <div className='background'>
                 <div>
-                    <h3>Start Planning your day now ...</h3>
+                    <h3>Let's achieve your Today's goals !!</h3>
                 </div>
 
                 <div>
@@ -40,7 +40,7 @@ class LoginBox extends React.Component{
                 
                 <button onClick={this.login}>Login</button>
 
-                <div id='error'>Errors goes here...</div>
+                <div id='error'></div>
                 
                 <Link to='/signup'>Not a member? Sign up</Link>
                 
@@ -49,6 +49,11 @@ class LoginBox extends React.Component{
     }
 
     login(){
+
+        if(this.state.email==='' | this.state.password===''){
+            $('#error').text('Please fill all the fields');
+            return;
+        }
 
         let payload = {email:this.state.email , password:this.state.password}; 
         
@@ -63,7 +68,12 @@ class LoginBox extends React.Component{
             
 
             success:(result)=>{
-                console.log(result);
+                if(!result){
+                    $('#error').text('Wrong Credentials Entered');
+                }else{
+                    console.log(this.props);
+                    this.props.loginAction(true);
+                }
             }
         });
     }
@@ -83,11 +93,11 @@ class LoginBox extends React.Component{
     }
 }
 
-function Login(){
+function Login(props){
     let login = 
     <div className='img-background'>
         <div className='head'>Todos Maker</div>
-        <LoginBox/>
+        <LoginBox loginAction={props.loginAction}/>
     </div>
     return login;
 }
